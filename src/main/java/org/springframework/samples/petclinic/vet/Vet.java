@@ -18,6 +18,7 @@ package org.springframework.samples.petclinic.vet;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.samples.petclinic.model.Person;
+import org.springframework.samples.petclinic.owner.Pet;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
@@ -65,5 +66,6 @@ public class Vet extends Person {
 	public void addSpecialty(Specialty specialty) {
 		getSpecialtiesInternal().add(specialty);
 	}
+
 
 }

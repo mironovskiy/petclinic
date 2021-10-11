@@ -58,11 +58,25 @@
               <tr>
                 <th>Visit Date</th>
                 <th>Description</th>
+                <th>Veterinarian</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
-            <tr th:each="visit : ${pet.visits}">
+            <tr th:style="${visit?.status == 'canceled' ? 'font-weight: bold' : ''}" th:each="visit : ${pet.visits}">
               <td th:text="${#temporals.format(visit.date, 'yyyy-MM-dd')}"></td>
               <td th:text="${visit?.description}"></td>
+              <td th:text="${visit?.vet.lastName}"></td>
+              <td th:text="${visit?.status}"></td>
+              <td><a
+                th:if="${visit?.status.equals('active')}"
+                th:href="@{{ownerId}/pets/{petId}/visits/{visitId}/cancel(ownerId=${owner.id},petId=${pet.id}, visitId=${visit?.id})}">Cancel
+                Visit</a></td>
+              <td><a
+                th:if="${visit?.status.equals('active')}"
+                th:href="@{{ownerId}/pets/{petId}/visits/{visitId}/edit(ownerId=${owner.id},petId=${pet.id}, visitId=${visit?.id})}">Edit
+                Visit</a></td>
             </tr>
             <tr>
               <td><a
